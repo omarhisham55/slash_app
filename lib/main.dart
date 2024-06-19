@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:slash_app/config/bloc_observer.dart';
@@ -10,7 +11,9 @@ import 'package:slash_app/features/navigation/cubit/navigation_cubit.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Dpi.init();
-  Bloc.observer = MyBlocObserver();
+  if (kDebugMode) {
+    Bloc.observer = MyBlocObserver();
+  }
   runApp(const MyApp());
 }
 
