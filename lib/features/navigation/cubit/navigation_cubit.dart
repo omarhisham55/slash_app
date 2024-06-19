@@ -21,4 +21,5 @@ class NavCubit extends Cubit<NavState> {
       int() => const Scaffold(),
     };
   }
+  
 }

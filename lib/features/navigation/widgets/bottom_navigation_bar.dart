@@ -9,6 +9,29 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<BottomNavigationBarItem> items = [
+      _bottomItem(
+        "Home",
+        AppImages.homeOutlined,
+        AppImages.homefilled,
+      ),
+      _bottomItem(
+        "Favorites",
+        AppImages.favourtieOutlined,
+        AppImages.favourtiefilled,
+      ),
+      _bottomItem(
+        "My Cart",
+        AppImages.shoppingCartOutlined,
+        AppImages.shoppingCartfilled,
+      ),
+      _bottomItem(
+        "Profile",
+        AppImages.profileOutlined,
+        AppImages.profilefilled,
+      ),
+    ];
+
     return BottomNavigationBar(
       currentIndex: manager.currentIndex,
       onTap: manager.changeIndex,
@@ -17,28 +40,7 @@ class BottomNavBar extends StatelessWidget {
       showSelectedLabels: true,
       showUnselectedLabels: true,
       type: BottomNavigationBarType.fixed,
-      items: [
-        _bottomItem(
-          "Home",
-          AppImages.homeOutlined,
-          AppImages.homefilled,
-        ),
-        _bottomItem(
-          "Favorites",
-          AppImages.favourtieOutlined,
-          AppImages.favourtiefilled,
-        ),
-        _bottomItem(
-          "My Cart",
-          AppImages.shoppingCartOutlined,
-          AppImages.shoppingCartfilled,
-        ),
-        _bottomItem(
-          "Profile",
-          AppImages.profileOutlined,
-          AppImages.profilefilled,
-        ),
-      ],
+      items: items,
     );
   }
 

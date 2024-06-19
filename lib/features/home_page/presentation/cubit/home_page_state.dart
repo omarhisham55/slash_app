@@ -27,3 +27,21 @@ class FavState extends HomePageState {
   @override
   List<Object> get props => [productId, isFav];
 }
+
+class BestSellingLoadingState extends HomePageState {}
+
+class BestSellingSuccessState extends HomePageState {}
+
+class BestSellingErrorState extends HomePageState {}
+
+class NewArrivalLoadingState extends HomePageState {}
+
+class NewArrivalSuccessState extends HomePageState {}
+
+class NewArrivalErrorState extends HomePageState {}
+
+class RecommendedLoadingState extends HomePageState {}
+
+class RecommendedSuccessState extends HomePageState {}
+
+class RecommendedErrorState extends HomePageState {}
