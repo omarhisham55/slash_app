@@ -42,7 +42,7 @@ class CategoryList extends StatelessWidget {
 
   Widget _baseCategoryList({
     required Map<String, String> categories,
-    double? height = 110,
+    double? height = 125,
     double? itemRadius = 40,
     double? separator = 10,
   }) {
