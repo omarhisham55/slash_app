@@ -8,9 +8,9 @@ class WebTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      width: 600,
-      child: Row(
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * .5,
+      child: const Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           DropDownTitle(),
