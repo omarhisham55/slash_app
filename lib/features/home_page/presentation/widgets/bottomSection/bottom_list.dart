@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:slash_app/config/responsive/responsive.dart';
 import 'package:slash_app/core/utils/colors.dart';
 import 'package:slash_app/core/utils/image_manager.dart';
 import 'package:slash_app/features/home_page/domain/entities/product.dart';
@@ -11,6 +13,13 @@ class BottomList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return ResponsiveLayout(
+      mobile: _mobileListView(),
+      web: _webGridView(),
+    );
+  }
+
+  Widget _mobileListView() {
     return Container(
       margin: const EdgeInsets.only(top: 20),
       height: 250,
@@ -18,12 +27,41 @@ class BottomList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: products.length,
         separatorBuilder: (context, index) => const SizedBox(width: 10),
-        itemBuilder: (context, index) => _bottomListItem(products[index]),
+        itemBuilder: (context, index) => _bottomListItem(
+          products[index],
+          width: 150,
+          height: 150,
+        ),
       ),
     );
   }
 
-  Widget _bottomListItem(Product product) {
+  Widget _webGridView() {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20),
+      height: 580,
+      child: GridView.count(
+        scrollDirection: Axis.horizontal,
+        crossAxisCount: 2,
+        mainAxisSpacing: 20,
+        crossAxisSpacing: 20,
+        children: List.generate(
+          products.length,
+          (index) => _bottomListItem(
+            products[index],
+            width: double.infinity,
+            height: 210,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _bottomListItem(
+    Product product, {
+    required double width,
+    required double height,
+  }) {
     return SizedBox(
       width: 150,
       child: Stack(
@@ -36,8 +74,8 @@ class BottomList extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
                   product.image,
-                  width: 150,
-                  height: 150,
+                  height: height,
+                  width: width,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -55,11 +93,13 @@ class BottomList extends StatelessWidget {
                           fontWeight: FontWeight.w700, fontSize: 18),
                     ),
                   ),
-                  const SizedBox(width: 10),
-                  Image.asset(
-                    product.image,
-                    height: 30,
+                  ClipOval(
+                    child: Image.asset(
+                      product.image,
+                      height: 30,
+                    ),
                   ),
+                  const SizedBox(width: 10),
                   const CircleAvatar(
                     radius: 18,
                     backgroundColor: AppColors.dark29,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:slash_app/config/responsive/responsive.dart';
+import 'package:slash_app/features/home_page/presentation/pages/web_home_layout.dart';
 import 'package:slash_app/features/navigation/navigation.dart';
 
 class HomePage extends StatelessWidget {
@@ -18,10 +19,6 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _webView(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Text("web view"),
-      ),
-    );
+    return const WebHomeLayout();
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:slash_app/config/responsive/responsive.dart';
 import 'package:slash_app/core/utils/colors.dart';
 
 class SectionTitle extends StatelessWidget {
@@ -7,12 +8,19 @@ class SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return ResponsiveLayout(
+      mobile: _baseTitle(),
+      web: _baseTitle(titleSize: 32),
+    );
+  }
+
+  Widget _baseTitle({double? titleSize = 22}) {
     return Row(
       children: [
         Expanded(
             child: Text(
           title,
-          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+          style: TextStyle(fontSize: titleSize, fontWeight: FontWeight.w600),
         )),
         const Text(
           "See all",

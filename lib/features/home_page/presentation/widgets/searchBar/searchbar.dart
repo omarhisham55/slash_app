@@ -3,7 +3,8 @@ import 'package:slash_app/core/utils/colors.dart';
 import 'package:slash_app/core/utils/image_manager.dart';
 
 class SearchFilterBar extends StatelessWidget {
-  const SearchFilterBar({super.key});
+  final bool isWeb;
+  const SearchFilterBar({super.key, this.isWeb = false});
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +28,20 @@ class SearchFilterBar extends StatelessWidget {
           ),
         ),
         //filter button
-        Container(
-          padding: const EdgeInsets.all(18),
-          margin: const EdgeInsets.only(left: 8),
-          decoration: BoxDecoration(
-            color: AppColors.lightE4,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: const ImageIcon(
-            AssetImage(AppImages.filter),
-            color: AppColors.lightF5,
-            size: 20,
+        Visibility(
+          visible: !isWeb,
+          child: Container(
+            padding: const EdgeInsets.all(18),
+            margin: const EdgeInsets.only(left: 8),
+            decoration: BoxDecoration(
+              color: AppColors.lightE4,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const ImageIcon(
+              AssetImage(AppImages.filter),
+              color: AppColors.lightF5,
+              size: 20,
+            ),
           ),
         )
       ],
