@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:slash_app/features/home_page/domain/entities/product.dart';
@@ -19,9 +20,11 @@ class HomePageCubit extends Cubit<HomePageState> {
 
   static HomePageCubit get(context) => BlocProvider.of<HomePageCubit>(context);
 
+  final CarouselController carouselController = CarouselController();
   int currentCarouselPage = 0;
   changeCarouselPage(int index) {
     currentCarouselPage = index;
+    carouselController.animateToPage(index);
     emit(CarouselState(index: index));
   }
 

@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:slash_app/config/responsive/responsive.dart';
 import 'package:slash_app/core/utils/colors.dart';
@@ -13,34 +12,37 @@ class OffersSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomePageCubit, HomePageState>(builder: (context, state) {
-      final HomePageCubit manager = HomePageCubit.get(context);
-      return Column(
-        children: [
-          ResponsiveLayout(
-            mobile: _baseCarousel(
-              manager: manager,
-              padding: const EdgeInsets.only(top: 30),
-              viewportFraction: .9,
-            ),
-            web: _baseCarousel(manager: manager, aspectRatio: 2.3),
-          ),
-          const SizedBox(height: 10),
-          DotsIndicator(
-            dotsCount: 2,
-            position: manager.currentCarouselPage,
-            decorator: DotsDecorator(
-              size: const Size.square(10),
-              activeSize: const Size(18, 10),
-              activeColor: AppColors.dark29,
-              activeShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
+    return BlocBuilder<HomePageCubit, HomePageState>(
+      builder: (context, state) {
+        final HomePageCubit manager = HomePageCubit.get(context);
+        return Column(
+          children: [
+            ResponsiveLayout(
+              mobile: _baseCarousel(
+                manager: manager,
+                padding: const EdgeInsets.only(top: 30),
+                viewportFraction: .9,
               ),
+              web: _baseCarousel(manager: manager, aspectRatio: 2.3),
             ),
-          )
-        ],
-      );
-    });
+            const SizedBox(height: 10),
+            DotsIndicator(
+              dotsCount: 2,
+              onTap: manager.changeCarouselPage,
+              position: manager.currentCarouselPage,
+              decorator: DotsDecorator(
+                size: const Size.square(10),
+                activeSize: const Size(18, 10),
+                activeColor: AppColors.dark29,
+                activeShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+              ),
+            )
+          ],
+        );
+      },
+    );
   }
 
   Widget _baseCarousel({
@@ -52,6 +54,7 @@ class OffersSlider extends StatelessWidget {
     return Padding(
       padding: padding!,
       child: CarouselSlider.builder(
+        carouselController: manager.carouselController,
         itemCount: 2,
         itemBuilder: (context, index, realIndex) {
           return Container(
