@@ -1,0 +1,39 @@
+name: slash_app
+description: "A new Flutter project."
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.4 <4.0.0"
+
+dependencies:
+  carousel_slider: ^4.2.1
+  cupertino_icons: ^1.0.6
+  dots_indicator: ^3.0.0
+  equatable: ^2.0.5
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.6
+  smooth_page_indicator: ^1.1.0
+
+dev_dependencies:
+  flutter_lints: ^3.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/carousel1.jpeg
+    - assets/images/filter.png
+    - assets/images/categories/
+    - assets/images/navIcons/
+    - assets/images/bestSelling/
+    - assets/images/newArrival/
+    - assets/images/recommended/
+  fonts:
+    - family: Urbanist
+      fonts:
+        - asset: assets/fonts/Urbanist-Bold.ttf
+        - asset: assets/fonts/Urbanist-SemiBold.ttf
